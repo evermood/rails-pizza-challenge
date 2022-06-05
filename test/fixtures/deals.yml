@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  code: MyString
+  product: one
+  product_size: one
+  group:
+  from: 1
+  to: 1
+  value: 1
+  value_scale: 1
+
+two:
+  name: MyString
+  code: MyString
+  product: two
+  product_size: two
+  group:
+  from: 1
+  to: 1
+  value: 1
+  value_scale: 1

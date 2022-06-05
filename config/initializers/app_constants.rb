@@ -1,0 +1,1 @@
+DEFAULT_SCALE = 2.freeze

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <body>
+		<% @orders.each do |order| %>
+			<%= form_for order do |f| %>
+					<div class="order-card">
+						<div class="order-header">
+							<h3>Order ID: <%= order.id %></h3>
+							<p>State: <%= order.state %></p>
+							<p>Created at: <%= order.created_at.strftime("%A, %d %b %Y %l:%M %p") %></p>
+						</div>
+						<div class="order-items">
+							<% order.order_items.each do |item| %>
+								<div class="order-item">
+									<p class="order-item-name">Item Name: <%= item.name %></p>
+									<p class="order-item-size">Size: <%= item.size %></p>
+									<div class="order-item-adds">
+										<% item.order_item_adds.each do |add| %>
+											<p class="added-item">Added Ingredient: <%= add.ingredient %></p>
+										<% end %>
+									</div>
+									<div class="order-item-removes">
+										<% item.order_item_removes.each do |remove| %>
+											<p class="removed-item">Removed Ingredient: <%= remove.ingredient %></p>
+										<% end %>
+									</div>
+								</div>
+							<% end %>
+						</div>
+						<div class="order-promo-codes">
+							<% order.order_promotion_codes.each do |code| %>
+								<p>Promotion Code: <%= code.code %></p>
+							<% end %>
+						</div>
+						<div class="order-discount-code">
+							<p>Discount Code: <%= order.discount_code %></p>
+						</div>
+						<h3>Total price: <%= order.total_price %> €</h3>
+						<%= f.submit "Update state to complete", class: "btn btn-primary" %>
+					</div>
+			<% end %>
+		<% end %>
+</body>
+
+	<style>
+	.order-card {
+		width: 50%;
+		margin: 20px auto;
+		padding: 20px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		box-shadow: 2px 2px 10px #ddd;
+	}
+
+	.order-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	.order-header h3 {
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+
+	.order-items .order-item {
+		margin-bottom: 20px;
+	}
+
+	.order-item-adds, .order-item-removes {
+		margin-top: 10px;
+	}
+
+	.order-promo-codes {
+		margin-top: 20px;
+	}
+
+	.order-discount-code {
+		margin-top: 20px;
+		font-style: italic;
+	}
+
+	.btn {
+			background-color: green;
+			color: white;
+			border: 1px solid green;
+			border-radius: 5px;
+			padding: 5px 10px;
+			text-decoration: none;
+			margin-top: 5px;
+			display: inline-block;
+		}
+
+	.order-item {
+		padding: 10px;
+		border: 1px solid #ccc;
+		margin-bottom: 10px;
+	}
+
+	.order-item-name {
+		font-weight: bold;
+	}
+
+	.order-item-size {
+		font-style: italic;
+	}
+
+	.added-item {
+		color: green;
+	}
+
+	.removed-item {
+		color: red;
+	}
+	</style>
+</html>
+
+
+

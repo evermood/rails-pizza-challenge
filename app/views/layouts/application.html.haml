@@ -1,0 +1,72 @@
+!!! 5
+%html
+
+  %head
+    %title
+      - title = yield(:title)
+      = title.present? ? title : "Untitled"
+      |
+      = t :application_name, default: "Pizza"
+    = favicon_link_tag @favicon || 'application.png'
+    = csrf_meta_tags
+    = csp_meta_tag
+    %meta{name: "viewport", content: "width=device-width,initial-scale=1"}
+
+    = stylesheet_link_tag 'application'
+    -#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+
+  %body{lang: I18n.locale,
+    class: [controller.controller_name, controller.action_name, yield(:body_class)]}
+    %header
+      - if defined? root_path
+        = link_to root_path, class: 'image_link' do
+          = image_tag 'application.png'
+      - else
+        = image_tag 'application.png'
+      #user_nav
+        -# if logged_in?
+          = link_to t(:you_are_logged_as, name: current_user.name), current_user
+          |
+          = link_to t(:logout), logout_path
+        -# else
+          = link_to t(:login), login_path
+        #locale_select
+          - if I18n.available_locales.size > 1
+            - I18n.available_locales.each do |lang|
+              - if lang == I18n.locale
+                .language.current.tooltip
+                  = lang.to_s.upcase
+                  .tooltiptext
+                    = t "locale.native_name", locale: lang
+              - else
+                - locale = I18n.locale.to_s
+                .language.other_language.tooltip
+                  - if request.get?
+                    - path = request.fullpath
+                    - path = path.index(locale) == 1 ? path.sub(locale, lang.to_s) : "/#{lang}#{path}"
+                    = link_to lang.to_s.upcase, path
+                    .tooltiptext
+                      = t "locale.native_name", locale: lang
+                  - else
+                    = lang.to_s.upcase
+                    .tooltiptext
+                      = t "locale.native_name", locale: lang
+
+    #container
+      -#= render "layouts/admin_menu"
+      -#= render "layouts/main_menu"
+
+      %main#content
+        - flash.each do |name, msg|
+          = content_tag :div, msg.html_safe, id: "flash_#{name}"
+
+        - if respond_to?(:show_title?) and show_title?
+          %h1
+            = yield(:title)
+
+        #view
+          = yield
+
+      -# = render 'cookies_eu/consent_banner'
+    %footer
+      .hidden

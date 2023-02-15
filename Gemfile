@@ -21,6 +21,9 @@ gem "jsbundling-rails"
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
 
+# To load the directory
+gem 'require_all'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -30,21 +33,31 @@ gem "cssbundling-rails"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
+
+# auth
+gem 'cancancan'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# views
+gem 'haml-rails'
+gem 'simple_form'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails"
+  gem 'guard-bundler', require: false
+  gem 'guard-rspec'
+  gem 'rspec-activemodel-mocks'
+  gem 'shoulda-matchers'
+  gem 'translations_sync'
 end
 
 group :development do
@@ -55,6 +68,18 @@ group :development do
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "spring"
+
+  gem 'annotate'
+  # i18n + templates and tools
+  gem 'active_record_model_and_rspec_enhanced_templates'
+  gem 'advanced_haml_scaffold_generator'
+  gem 'i18n_scaffold_controller_template'
+  gem 'i18n_scaffold_generator'
+  gem 'rspec_rails_scaffold_templates'
+end
+
+group :test do
+  gem 'factory_bot_rails', github: 'dima4p/factory_bot_rails'
 end
 

@@ -1,0 +1,15 @@
+--- 
+de:
+  errors: 
+    connection_refused: |-
+        Hoppla! Die Verbindung zur Middleware der Web Console konnte nicht hergestellt werden.
+        Bitte stellen Sie sicher, dass ein rails Entwicklungsserver läuft.
+    unacceptable_request: |-
+        Eine unterstützte Version wird im Accept-Header erwartet.
+    unavailable_session: |-
+        Die Session %{id} ist im Memory nicht mehr verfügbar.
+
+        Wenn Sie zufällig auf einem Multiprozess-Server (wie Unicorn oder Puma) laufen,
+        wird der Prozess dieser Anfragetreffer speichert %{id} nicht im Memory.
+        Erwägen Sie, die Anzahl der Prozesse/Arbeiter zu einem (1) oder
+        mit einem anderen Server in der Entwicklung.

@@ -1,0 +1,15 @@
+--- 
+en:
+  locale:
+    native_name: 'English'
+  errors: 
+    template: 
+      body: "There were problems with the following fields:"
+      header: 
+        one:    "%{count} error prohibited this %{model} from being saved"
+        other:  "%{count} errors prohibited this %{model} from being saved"
+  date:
+    order:
+      - :day
+      - :month
+      - :year

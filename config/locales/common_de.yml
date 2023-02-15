@@ -1,0 +1,15 @@
+--- 
+de:
+  Back: Zurück
+  access_denied: "Sie haben keine Rechte, auf diese Seite zu zugreifen"
+  actions: Aktionen
+  application_name: "Pizza"
+  are_you_sure: "Sind Sie sicher?"
+  back: "Zurück zur Liste"
+  cancel: Abbrechen
+  destroy: Löschen
+  edit: Bearbeiten
+  login: Anmelden
+  logout: Abmelden
+  show: Anzeigen
+  you_are_logged_as: "Sie sind als %{name} angemeldet"

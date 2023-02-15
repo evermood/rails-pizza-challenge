@@ -1,0 +1,15 @@
+--- 
+en:
+  Back: Back
+  access_denied: You have no rights to access this page
+  actions: Actions
+  application_name: "Pizza"
+  are_you_sure: 'Are you sure?'
+  back: 'Back to list'
+  cancel: Cancel
+  destroy: Delete
+  edit: Edit
+  login: Login
+  logout: Logout
+  show: Show
+  you_are_logged_as: "You are logged as %{name}"

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_15_163717) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_181739) do
+  create_table "pizzas", id: false, force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "name"
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_pizzas_on_slug", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false

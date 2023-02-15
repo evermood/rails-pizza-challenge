@@ -1,0 +1,468 @@
+@import colors
+
+body
+  background-color: $body_bg
+  font-family: verdana, arial, helvetica, sans-serif
+  font-size: 14px
+  // line-height: 18px
+  margin: 0px
+  &.index
+    .empty
+      font-size: 18px
+      text-align: center
+  form
+    font-family: 'Roboto Condensed', sans-serif
+  h1
+    color: $body_h1
+    font-size: 28px
+    font-stretch: semi-expanded
+    font-weight: bold
+    line-height: 32px
+    margin: 18px
+    text-align: center
+    //text-transform: uppercase
+  h2
+    font-size: 24px
+    line-height: 26px
+  h3
+    font-size: 22px
+    line-height: 24px
+  h4
+    font-size: 20px
+    line-height: 22px
+  h5
+    font-size: 18px
+    line-height: 20px
+  h6
+    font-size: 16px
+    line-height: 18px
+
+  #user_nav
+    padding-right: 8px
+    margin: 8px 0
+    float: right
+    font-size: 16px
+
+dt
+  font-size: 15px
+  padding-top: 8px
+
+p, ol, ul, td
+  color: $text
+  font-size: 13px
+  line-height: 18px
+
+pre
+  background-color: $unformatted
+  padding: 10px
+  font-size: 11px
+
+a
+  &.image_link:hover
+    color: $header_bg
+    background-color: $header_bg
+  color: $link
+  &:visited
+    color: $link_visited
+  &:hover
+    color: $link_hover
+    background-color: $link_hover_bg
+  img
+    border: none
+.wice-grid-title-row
+  a
+    color: $wice_grid_header_color
+    text-decoration: none
+    &:visited
+      color: $wice_grid_header_color
+    &:hover
+      background-color: $wice_grid_hover_bg
+      color: $wice_grid_hover_color
+
+div
+  &.field, &.actions
+    margin-bottom: 10px
+
+header
+  background-color: $header_bg
+  box-shadow: 0 0 4px $header_shadow
+  height: 43px
+  padding: 0 10px 0 22px
+  a.image_link
+    text-decoration: none
+  img
+    height: 43px
+
+footer
+  margin-top: 10px
+
+hr
+  margin-bottom: 0
+
+table
+  tr
+    th
+      text-align: center
+      font-weight: bold
+    td,th
+      border-top: 1px solid $table_record_border
+      border-left: 1px solid $table_record_border
+      padding: 0 1px
+      &.numeric
+        text-align: right
+        padding-right: 12px
+      &.center
+        text-align: center
+      &:last-of-type
+        border-right: 1px solid $table_record_border
+    &.even
+      td
+        background-color: $tr_even
+    &:last-of-type
+      td
+        border-bottom: 1px solid $table_record_border
+  tfoot
+    td
+      border-left: none
+      &:last-of-type
+        border-right: none
+
+ul.pagination
+  padding-left: 0
+  li
+    display: inline
+    &.active
+      a
+        font-weight: bold
+        text-decoration: none
+
+#app
+  table.lines
+    font-family: 'Ubuntu Mono', verdana, arial, helvetica, sans-serif
+    td.pre
+      font-size: 16px
+
+#admin_menu
+  margin: 20px auto -36px
+  ul.admin_menu
+    border-bottom: 1px solid $admin_menu_border
+    font-family: Arial,Helvetica,sans_serif
+    font-size: 11px
+    font-weight: bold
+    list-style-type: none
+    margin: 0
+    padding: 4px 4px 29px
+    margin: 10px 4px
+    li
+      background-color: $admin_menu_bg
+      border: 1px solid $admin_menu_border
+      float: left
+      height: 26px
+      margin: 2px 2px 0 2px
+    li.active
+      background-color: $admin_menu_active
+      border-bottom: 1px solid $main_menu_border
+    a
+      color: $admin_menu_color
+      display: block
+      float: left
+      padding: 4px
+      text-decoration: none
+      &:hover
+        color: $admin_menu_hover_color
+        background: $admin_menu_hover_bg
+
+#main_menu
+  margin: 36px auto 20px
+  ul
+    background-color: $main_menu_bg
+    // background: image-url('menu.png') repeat-x scroll 0 0 $main_menu_bg
+    border: 1px solid $main_menu_border
+    border-radius: 5px
+    color: $main_menu_color
+    font-weight: bold
+    font-size: 15px
+    line-height: 19px
+    list-style-type: none
+    margin: 10px 0
+    padding-bottom: 35px
+    li
+      &.active
+        a
+          background-color: $main_menu_active_bg
+          // background: image-url('menu1.png') repeat-x scroll 0 0 $main_menu_active_bg
+      &:last-of-type
+        a
+          border-right: 1px none
+      &.jobs.missing
+        a
+          color: $no_runner
+    a
+      border-right: 1px solid $main_menu_sep
+      color: $main_menu_color
+      float: left
+      display: block
+      text-decoration: none
+      padding: 8px 20px
+      &:hover
+        background-color: $main_menu_active_bg
+        // background: image-url('menu1.png') repeat-x scroll 0 0 $main_menu_active_bg
+
+#container
+  background: $container_bg
+  margin: 0 20px
+
+#error_explanation
+  width: 450px
+  border: 2px solid $error_explanation_border
+  padding: 7px
+  padding-bottom: 0
+  margin-bottom: 20px
+  background-color: $error_explanation_bg
+  h2
+    text-align: left
+    font-weight: bold
+    padding: 5px 5px 5px 15px
+    font-size: 12px
+    margin: -7px
+    margin-bottom: 0px
+    background-color: $error_explanation_header_bg
+    color: $error_explanation_header
+  ul li
+    font-size: 12px
+    list-style: square
+
+#flash_notice,
+#flash_error,
+#flash_alert
+  padding: 5px 8px
+  margin: 10px 0
+
+#flash_notice
+  background-color: $flash_notice_bg
+  border: solid 1px $flash_notice_border
+
+#flash_error,
+#flash_alert
+  background-color: $flash_error_bg
+  border: solid 1px $flash_error_border
+
+#locale_select
+  display: inline-block
+  font-size: 16px
+  font-weight: bold
+  .language
+    color: $locale
+    display: inline-block
+    padding: 2px 6px
+    &.current
+      color: $locale_current
+      background: $locale
+      border-radius: 3px
+    &:hover
+      background: $locale
+      border-radius: 3px
+      color: $locale_current
+      a
+        color: $locale_current
+    a
+      color: $locale
+      text-decoration: none
+      &:hover
+        background: $locale
+        border-radius: 3px
+        color: $locale_current
+  .tooltip
+    .tooltiptext
+      background: $locale
+      top: 23px
+
+#notice
+  color: $notice
+
+#overlay_mask
+  background-color: $overlay_mask !important
+
+#sortable
+  .draggable
+    cursor: move
+
+#spinner
+  display: none
+  left: 0
+  position: fixed
+  top: 0
+  z-index: 100
+  img
+    //width: 100px
+
+.alert-error,
+.error_notification
+  background-color: $error_notification_bg
+  border: 2px solid $error_notification_border
+  border-radius: 6px
+  color: $error_notification
+  margin-top: 12px
+  padding: 6px
+.error_notification
+  width: 550px
+  margin-bottom: 8px
+
+.pre
+  white-space: pre
+
+.simple_form
+  display: block
+  margin: 0 auto
+  width: 750px
+  fieldset:last-of-type
+    margin-bottom: 10px
+  fieldset>.input:last-of-type
+    margin-bottom: 0
+  input
+    height: 18px
+    &[type=submit]
+      color: $form_button
+      background-color: $form_button_bg
+      border: none
+      font-size: 16px
+      font-weight: bold
+      height: 30px
+      text-transform: uppercase
+      padding: 0 15px
+      width: auto
+  input, textarea, select
+    border: solid
+    border-color: $form_border_color
+    border-radius: 6px
+    border-width: 2px
+    font-size: 16px
+    padding: 1px 8px
+    width: 340px
+    &[type=checkbox]
+      position: relative
+      top: 4px
+      width: 20px
+  label
+    color: $form_color
+    float: left
+    font-size: 16px
+    font-weight: bold
+    margin: 4px 28px 2px 2px
+    text-align: right
+    width: 176px
+    &.boolean
+      float: none
+      font-weight: normal
+      margin-left: 11em
+      padding-left: 24px
+      text-transform: none
+  select
+    width: 360px
+  ul
+    margin-left: 196px
+    label
+      float: none
+      font-weight: normal
+  textarea
+    height: 110px
+  .actions
+    margin-left: 206px
+    a
+      display: block
+      height: 18px
+    input
+      margin-bottom: 6px
+  .field_with_errors
+    padding: 2px
+    position: relative
+    input
+      border: 1px solid $error_explanation
+    .error
+      color: $error_explanation
+      left: 14px + 176px + 30px
+      position: absolute
+      top: -12px
+  .input
+    margin-bottom: 10px
+    a.array_input_add_item
+      height: 9px
+      margin-left: 208px
+      padding: 0 4px 6px !important // to overwrite fancy-button
+      //+fancy-button($form_array_input_add_item_button, 12px)
+      &:nth-child(2)
+        margin-left: 0
+    a.array_input_remove_item
+      height: 9px
+      margin-left: 6px
+      padding: 0 4px 6px !important // to overwrite fancy-button
+      //+fancy-button($form_array_input_remove_item_button, 12px)
+    a.add_nested_fields
+      margin-top: 6px
+    a.remove_nested_fields
+      margin-top: 3px
+      vertical-align: top
+    .fields:not(:first-of-type)
+      margin-left: 208px
+  .radio
+    label
+      float: none
+      margin: 2px 6px 2px -4px
+      width: auto
+      input
+        margin: 0 3px
+        vertical-align: text-bottom
+        width: 18px
+
+.tooltip
+  position: relative
+  display: inline-block
+  // border-bottom: 1px dotted black // If you want dots under the hoverable text
+  .tooltiptext
+    visibility: hidden
+    width: auto
+    background-color: $locale
+    text-align: center
+    padding: 5px
+    border-radius: 3px
+    // Position the tooltip text - see examples below!
+    position: absolute
+    right: 0px
+    z-index: 1
+  &:hover
+    .tooltiptext
+      visibility: visible
+
+.wice-grid
+  .active
+    .custom-dropdown-container
+      width: 90px
+      select
+        width: 72px
+  .custom-dropdown-container
+    width: 138px
+    select
+      width: 120px
+  .date-filter
+    width: 138px
+  .csv_export
+    text-align: center
+    div
+      display: inline
+  tfoot
+    line-height: 20px
+    a
+      &:hover
+        font-weight: bold
+    ul,td
+      font-size: 16px
+  thead
+    ul,td
+      font-size: 16px
+  .pagination_status
+    a
+      &:hover
+        font-weight: 800
+
+.translation_missing
+  background: $translation_missing

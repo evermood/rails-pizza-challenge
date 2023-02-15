@@ -11,7 +11,7 @@ For this purpose, a small full-stack application is to be created with Ruby on R
 
 ![Orders listing](images/orders_wireframe.png)
 
-In [`data/orders.json`](data/orders.json) you will find a sample listing that you can use as a basis for your listing. Use it to fill the corresponding fields in the UI.
+In [`db/orders.json`](db/orders.json) you will find a sample listing that you can use as a basis for your listing. Use it to fill the corresponding fields in the UI.
 
 Furthermore, to mark orders as completed, you can click on the respective button. It should send a `PATCH` request to a `/orders/:id` backend endpoint to update the order. Completed orders should then simply no longer be displayed in the UI.
 
@@ -23,7 +23,7 @@ At last, the total price for a pizza order is to be calculated and displayed. Fo
 - Promotion codes allow to get pizzas for free; e.g., two small salami pizzas for the price of one. Extra ingredients will still be charged though. Multiple promotion codes can be specified per order. A promotion code can also be applied more than once to the same order (a 2-for-1 code automatically reduces 4 pizzas to 2 for one order).
 - A discount code reduces the total invoice amount by a percentage.
 
-In [`data/config.yml`](data/config.yml) you can find the list of selectable pizzas, the multipliers and ingredients, as well as the promotion and discount codes.
+In [`db/seeds.yml`](db/seeds.yml) you can find the list of selectable pizzas, the multipliers and ingredients, as well as the promotion and discount codes.
 
 
 ## How to proceed and submit the solution

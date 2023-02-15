@@ -13,12 +13,13 @@ pickle-email-*.html
 
 # Ignore all logfiles and tempfiles.
 /log/*
-/tmp/*
 !/log/.keep
+/tmp/*
 !/tmp/.keep
+!/tmp/pids/
+!/tmp/pids/.keep
 
-# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
-config/initializers/secret_token.rb
+# Ignore master key for decrypting credentials and more.
 config/master.key
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
@@ -51,6 +52,17 @@ bower.json
 
 # Ignore node_modules
 node_modules/
+
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+# Ignore assets/builds
+/app/assets/builds/*
+!/app/assets/builds/.keep
 
 # Ignore precompiled javascript packs
 /public/packs

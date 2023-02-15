@@ -15,6 +15,8 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
+require 'active_support/core_ext/string/inflections'
+
 guard :bundler do
   require 'guard/bundler'
   require 'guard/bundler/verify'
@@ -36,7 +38,8 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: "bundle exec rspec",
+    all_after_pass: false, all_on_start: false, failed_mode: :focus do
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -53,7 +56,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   dsl.watch_spec_files_for(ruby.lib_files)
 
   # Rails files
-  rails = dsl.rails(view_extensions: %w(erb haml slim))
+  rails = dsl.rails(view_extensions: %w(erb haml slim jbuilder))
   dsl.watch_spec_files_for(rails.app_files)
   dsl.watch_spec_files_for(rails.views)
 
@@ -61,8 +64,31 @@ guard :rspec, cmd: "bundle exec rspec" do
     [
       rspec.spec.call("routing/#{m[1]}_routing"),
       rspec.spec.call("controllers/#{m[1]}_controller"),
-      rspec.spec.call("acceptance/#{m[1]}")
+      rspec.spec.call("requests/#{m[1]}")
     ]
+  end
+
+  # forms, fields, and partials
+  watch(%r{^app/(.*)_form(.*)(\.erb|\.haml|\.slim)$}) do |m|
+    [
+      "spec/#{m[1]}edit#{m[2]}#{m[3]}_spec.rb",
+      "spec/#{m[1]}new#{m[2]}#{m[3]}_spec.rb",
+    ]
+  end
+  watch(%r{^app/(.*)\/_.*fields(.*)(\.erb|\.haml|\.slim)$}) do |m|
+    [
+      "spec/#{m[1]}/edit#{m[2]}#{m[3]}_spec.rb",
+      "spec/#{m[1]}/new#{m[2]}#{m[3]}_spec.rb",
+    ]
+  end
+  watch(%r{^app/(.*)\/_.*(\.json.jbuilder)$}) do |m|
+    [
+      "spec/#{m[1]}/index#{m[2]}_spec.rb",
+      "spec/#{m[1]}/show#{m[2]}_spec.rb"
+    ]
+  end
+  watch(%r{^app/(.*)_index(.*)(\.erb|\.haml|\.slim)$}) do |m|
+    "spec/#{m[1]}index#{m[2]}#{m[3]}_spec.rb"
   end
 
   # Rails config changes
@@ -71,7 +97,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.view_dirs) { |m| ["spec/features/#{m[1]}_spec.rb", "spec/requests/#{m[1]}_spec.rb"] }
   watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Turnip features and steps
@@ -79,4 +105,26 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
     Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
   end
+
+  # Factory Bot
+  watch(%r{^spec/factories/(.+)\.rb$}) do |m|
+    [
+      "spec/controllers/#{m[1]}_controller_spec.rb",
+      "spec/models/#{m[1].singularize}_spec.rb",
+      "spec/views/#{m[1]}",
+    ]
+  end
+
+  # translations
+  watch(%r{config/locales/(.*)_.*\.yml}) do  |m|
+    [
+      "spec/extra/i18n_integration_spec.rb",
+      "spec/controllers/#{m[1]}_controller_spec.rb",
+      "spec/models/#{m[1].singularize}_spec.rb",
+      "spec/views/#{m[1]}",
+    ]
+  end
+
+  # Ability
+  watch(%r{^spec/models/ability/(.+)\.rb$}) {"spec/models/ability_spec.rb"}
 end

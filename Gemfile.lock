@@ -245,6 +245,10 @@ GEM
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    slug (4.1.1)
+      activerecord (> 3.0.0)
+      activesupport (> 3.0.0)
+      rake
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -301,6 +305,7 @@ DEPENDENCIES
   sassc-rails
   shoulda-matchers
   simple_form
+  slug
   spring
   sprockets-rails
   sqlite3 (~> 1.4)

@@ -2,7 +2,7 @@
 #
 # Table name: ingredients
 #
-#  slug       :string           not null
+#  slug       :string           not null, primary key
 #  name_de    :string
 #  name_en    :string
 #  price      :decimal(10, 2)   not null

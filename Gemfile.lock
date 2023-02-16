@@ -262,6 +262,8 @@ GEM
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.1)
+    traco (5.3.3)
+      activerecord (>= 4.2)
     translations_sync (0.4.14)
       activesupport
       ya2yaml
@@ -309,6 +311,7 @@ DEPENDENCIES
   spring
   sprockets-rails
   sqlite3 (~> 1.4)
+  traco
   translations_sync
   web-console
 

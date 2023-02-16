@@ -46,6 +46,7 @@ gem 'cancancan'
 # gem "image_processing", "~> 1.2"
 
 # models
+gem 'traco'
 gem 'slug'
 
 # views

@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :discount do
-    sequence(:name) {|n| "Name#{format '%03d', n}" }
+    sequence(:name) {|n| "DiscountName#{format '%03d', n}" }
     deduction_in_percent { "9.99" }
   end
 end

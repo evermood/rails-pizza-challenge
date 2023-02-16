@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :ingredient do
-    sequence(:name_de) {|n| "Name de#{format '%03d', n}" }
-    sequence(:name_en) {|n| "Name en#{format '%03d', n}" }
+    sequence(:name_de) {|n| "IngredientName de#{format '%03d', n}" }
+    sequence(:name_en) {|n| "IngredientName en#{format '%03d', n}" }
     price { rand(0.8..1.99) }
   end
 end

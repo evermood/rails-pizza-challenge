@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :pizza_size do
-    sequence(:name_de) {|n| "Name de#{format '%03d', n}" }
-    sequence(:name_en) {|n| "Name en#{format '%03d', n}" }
+    sequence(:name_de) {|n| "SizeName de#{format '%03d', n}" }
+    sequence(:name_en) {|n| "SizeName en#{format '%03d', n}" }
     coefficient { rand(0.8..1.99) }
   end
 end

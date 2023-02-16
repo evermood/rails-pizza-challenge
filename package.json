@@ -4,5 +4,8 @@
   "dependencies": {
     "esbuild": "^0.17.8",
     "sass": "^1.58.1"
+  },
+  "scripts": {
+    "build:css": "true"
   }
 }

@@ -22,3 +22,10 @@ seeds_data['size_multipliers'].each do |name_en, coefficient|
     .create_with(coefficient: coefficient, name_de: name_de)
     .find_or_create_by name_en: name_en
 end
+
+seeds_data['ingredients'].each do |name_en, price|
+  name_de = translations['de'][name_en]
+  Ingredient
+    .create_with(price: price, name_de: name_de)
+    .find_or_create_by name_en: name_en
+end

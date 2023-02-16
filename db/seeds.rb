@@ -39,3 +39,8 @@ seeds_data['promotions'].each do |name, options|
     .find_or_create_by name: name
 end
 
+seeds_data['discounts'].each do |name, options|
+  Discount
+    .create_with(deduction_in_percent: options['deduction_in_percent'])
+    .find_or_create_by name: name
+end

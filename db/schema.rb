@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_16_122912) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_16_140019) do
+  create_table "discounts", id: false, force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "name"
+    t.decimal "deduction_in_percent", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ingredients", id: false, force: :cascade do |t|
     t.string "slug", null: false
     t.string "name_de"

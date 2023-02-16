@@ -1,0 +1,36 @@
+---
+en:
+  activerecord:
+    models:
+      order: "Order"
+    attributes:
+      order: 
+        created_at: "Created"
+        state: "State"
+        price: "Price"
+        discounts: "Discounts"
+        promotions: "Promotions"
+  helpers:
+    submit:
+      order:
+        create: "Create order"
+        update: "Update order"
+  orders:
+    edit:
+      title: "Editing of the order"
+    form:
+      order: "Order"
+    index:
+      complete: Complete
+      confirm: "Are you sure you want to delete the order?"
+      empty: "No orders found"
+      new_order: "Add a new order"
+      title: "Listing of orders"
+    new:
+      title: "Adding a new order"
+    show:
+      title: "Order of %{created_at}"
+    was_completed: "Order was successfully completed"
+    was_created: "Order was successfully added"
+    was_deleted: "Order was successfully deleted"
+    was_updated: "Order was successfully updated"

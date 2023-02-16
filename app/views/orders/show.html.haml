@@ -1,0 +1,17 @@
+- title t '.title', created_at: @order.created_at.to_fs(:long)
+
+%p.nav
+  - if can? :index, Order
+    = link_to t('back'), orders_path, class: 'index'
+  - if can? :edit, @order
+    = link_to t('edit'), edit_order_path(@order), class: 'edit'
+
+%dl
+  %dt= Order.human_attribute_name :state
+  %dd.state= @order.state
+  %dt= Order.human_attribute_name :price
+  %dd.price= @order.price
+  %dt= Order.human_attribute_name :discount_ids
+  %dd.discount_ids= @order.discount_ids
+  %dt= Order.human_attribute_name :promotion_ids
+  %dd.promotion_ids= @order.promotion_ids

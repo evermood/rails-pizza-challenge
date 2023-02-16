@@ -1,0 +1,6 @@
+- title t('.title')
+
+- if can? :index, Order
+  %p.nav= link_to t('back'), orders_path, class: 'index'
+
+= render 'form', order: @order

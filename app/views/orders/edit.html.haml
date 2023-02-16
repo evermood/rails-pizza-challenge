@@ -1,0 +1,9 @@
+- title t '.title', created_at: @order.created_at.to_fs(:long)
+
+%p.nav
+  - if can? :index, Order
+    = link_to t('back'), orders_path, class: 'index'
+  - if can? :show, @order
+    = link_to t('show'), @order, class: 'show'
+
+= render 'form', order: @order

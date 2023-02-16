@@ -1,0 +1,36 @@
+--- 
+de: 
+  activerecord: 
+    attributes: 
+      order: 
+        created_at: "Erstellt"
+        discounts: Rabatte
+        price: Preis
+        promotions: Aktionen
+        state: Status
+    models: 
+      order: Bestellung
+  helpers: 
+    submit: 
+      order: 
+        create: "Bestellung anlegen"
+        update: "Bestellung aktualisieren"
+  orders: 
+    edit: 
+      title: "Bearbeitung der Bestellung"
+    form: 
+      order: Bestellung
+    index: 
+      complete: Abschließen
+      confirm: "Sind Sie sicher, dass Sie die Bestellung löschen möchten?"
+      empty: "Keine Bestellungen gefunden"
+      new_order: "Hinzufügen eine neue Bestellung"
+      title: "Auflistung der Bestellungen"
+    new:
+      title: "Hinzufügen eine neue Bestellung"
+    show: 
+      title: "Bestellung von %{created_at}"
+    was_completed: "Bestellung wurde erfolgreich abgeschlossen"
+    was_created: "Bestellung wurde hinzugefügt"
+    was_deleted: "Bestellung wurde erfolgreich gelöscht"
+    was_updated: "Bestellung wurde erfolgreich aktualisiert"

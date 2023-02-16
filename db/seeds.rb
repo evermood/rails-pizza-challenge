@@ -29,3 +29,13 @@ seeds_data['ingredients'].each do |name_en, price|
     .create_with(price: price, name_de: name_de)
     .find_or_create_by name_en: name_en
 end
+
+seeds_data['promotions'].each do |name, options|
+  pizza = Pizza.find_by name: options['target']
+  pizza_size = PizzaSize.find_by name_en: options['target_size']
+  Promotion
+    .create_with(pizza: pizza, pizza_size: pizza_size,
+                 from: options['from'], to: options['to'])
+    .find_or_create_by name: name
+end
+

@@ -19,3 +19,11 @@ promotions:
 discounts:
   SAVE5:
     deduction_in_percent: 5
+translations:
+  de:
+    Small: Kleine
+    Medium: Mittlere
+    Large: Große
+    Onions: Zwiebeln
+    Cheese: Käse
+    Olives: Oliven

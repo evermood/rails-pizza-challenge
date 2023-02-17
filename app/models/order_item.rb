@@ -17,6 +17,8 @@ class OrderItem < ApplicationRecord
   belongs_to :order, required: true
   belongs_to :pizza, required: true, foreign_key: :pizza_slug, primary_key: :slug
   belongs_to :pizza_size, required: true, foreign_key: :pizza_size_slug, primary_key: :slug
+  has_many :additions
+  has_many :exemptions
 
   scope :ordered, -> { order(:created_at) }
 

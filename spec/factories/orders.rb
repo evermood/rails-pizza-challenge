@@ -12,7 +12,6 @@
 #
 FactoryBot.define do
   factory :order do
-    state {"ready"}
     price { rand(8.0..55.99) }
     discount_ids do
       rand(1..2).times.map do

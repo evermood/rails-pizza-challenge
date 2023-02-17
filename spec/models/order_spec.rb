@@ -20,6 +20,25 @@ describe Order, type: :model do
     it { is_expected.to be_valid }
   end   # validations
 
+  describe 'before create' do
+    it 'assigns "ready" to #state' do
+      expect(order.state).to eq "ready"
+    end
+  end
+
+  describe '#complete!' do
+    subject(:complete!) {order.complete!}
+
+    it 'changes #state ot "done"' do
+      expect{complete!}.to change(order, :state).to "done"
+    end
+
+    it 'makes the change persistent' do
+      complete!
+      expect(order.reload.state).to eq "done"
+    end
+  end
+
   describe '#discounts' do
     subject(:discounts) {order.discounts}
 
@@ -43,7 +62,7 @@ describe Order, type: :model do
       expect{set_discounts}.to change(order, :discount_ids).to slugs
     end
 
-    it 'makes this persistent' do
+    it 'makes the change persistent' do
       set_discounts
       expect(order.reload.discount_ids).to eq slugs
     end
@@ -72,7 +91,7 @@ describe Order, type: :model do
       expect{set_promotions}.to change(order, :promotion_ids).to slugs
     end
 
-    it 'makes this persistent' do
+    it 'makes the change persistent' do
       set_promotions
       expect(order.reload.promotion_ids).to eq slugs
     end

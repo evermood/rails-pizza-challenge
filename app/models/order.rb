@@ -14,6 +14,12 @@
 # Model Order keeps all the pizza orders
 #
 class Order < ApplicationRecord
+  before_create :set_ready! #FIXME: Install AASM
+
+  def complete!
+    update state: 'done'
+  end
+
   def discounts
     discount_ids.map do |slug|
       Discount.find slug
@@ -32,5 +38,11 @@ class Order < ApplicationRecord
 
   def promotions=(promotions)
     update promotion_ids: promotions.map(&:slug)
+  end
+
+  private
+
+  def set_ready!
+    self.state = "ready"
   end
 end

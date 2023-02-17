@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_17_120340) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_17_130002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "additions", force: :cascade do |t|
+    t.bigint "order_item_id", null: false
+    t.string "ingredient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_additions_on_ingredient_id"
+    t.index ["order_item_id"], name: "index_additions_on_order_item_id"
+  end
 
   create_table "discounts", id: false, force: :cascade do |t|
     t.string "slug", null: false
@@ -84,4 +93,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_120340) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "additions", "order_items"
 end

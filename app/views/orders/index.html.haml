@@ -9,7 +9,7 @@
       %tr
         %th= Order.human_attribute_name :state
         %th= Order.human_attribute_name :price
-        %th= Order.human_attribute_name :discount_ids
+        %th= Order.human_attribute_name :discount_id
         %th= Order.human_attribute_name :promotion_ids
         %th{colspan: 3}= t 'actions'
 
@@ -18,7 +18,7 @@
         %tr{class: cycle(:odd, :even)}
           %td.state= order.state
           %td.price= order.price
-          %td= order.discount_ids
+          %td= order.discount_id
           %td= order.promotion_ids
           %td.action
             - if can? :show, order

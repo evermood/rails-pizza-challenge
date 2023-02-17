@@ -14,7 +14,7 @@ describe "orders/edit.html.haml", type: :view do
     assert_select "form[action='#{order_path(order)}'][method='post']" do
       assert_select 'input#order_state[name=?]', 'order[state]'
       assert_select 'input#order_price[name=?]', 'order[price]'
-      assert_select 'input#order_discount_ids[name=?]', 'order[discount_ids]'
+      assert_select 'input#order_discount_id[name=?]', 'order[discount_id]'
       assert_select 'input#order_promotion_ids[name=?]', 'order[promotion_ids]'
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_17_161535) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_17_171859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -61,10 +61,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_161535) do
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "state"
     t.decimal "price", precision: 10, scale: 2
-    t.string "discount_ids", default: [], null: false, array: true
     t.string "promotion_ids", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "discount_id"
   end
 
   create_table "pizza_sizes", id: false, force: :cascade do |t|

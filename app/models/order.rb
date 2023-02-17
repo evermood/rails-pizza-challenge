@@ -5,10 +5,10 @@
 #  id            :uuid             not null, primary key
 #  state         :string
 #  price         :decimal(10, 2)
-#  discount_ids  :string           default([]), not null, is an Array
 #  promotion_ids :string           default([]), not null, is an Array
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  discount_id   :string
 #
 
 # Model Order keeps all the pizza orders
@@ -16,20 +16,11 @@
 class Order < ApplicationRecord
   before_create :set_ready! #FIXME: Install AASM
 
+  belongs_to :discount, optional: true
   has_many :order_items, dependent: :destroy
 
   def complete!
     update state: 'done'
-  end
-
-  def discounts
-    discount_ids.map do |slug|
-      Discount.find slug
-    end
-  end
-
-  def discounts=(discounts)
-    update discount_ids: discounts.map(&:slug)
   end
 
   def promotions

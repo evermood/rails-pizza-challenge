@@ -4,7 +4,7 @@ de:
     attributes: 
       order: 
         created_at: "Erstellt"
-        discounts: Rabatte
+        discount: Rabatt
         price: Preis
         promotions: Aktionen
         state: Status

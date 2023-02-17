@@ -14,7 +14,7 @@
 #  index_additions_on_order_item_id  (order_item_id)
 #
 
-# Model Addition keeps the additions for a Pizza in an Order
+# Model Addition keeps the Ingredients that should be added to a Pizza in an Order
 #
 class Addition < ApplicationRecord
 

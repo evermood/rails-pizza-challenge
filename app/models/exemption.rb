@@ -13,7 +13,8 @@
 #  index_exemptions_on_ingredient_id  (ingredient_id)
 #  index_exemptions_on_order_item_id  (order_item_id)
 #
-# Model Exemption defines ... TODO:
+
+# Model Exemption keeps the Ingredients that should not be added to a Pizza in an Order
 #
 class Exemption < ApplicationRecord
 

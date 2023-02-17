@@ -14,4 +14,23 @@
 # Model Order keeps all the pizza orders
 #
 class Order < ApplicationRecord
+  def discounts
+    discount_ids.map do |slug|
+      Discount.find slug
+    end
+  end
+
+  def discounts=(discounts)
+    update discount_ids: discounts.map(&:slug)
+  end
+
+  def promotions
+    promotion_ids.map do |slug|
+      Promotion.find slug
+    end
+  end
+
+  def promotions=(promotions)
+    update promotion_ids: promotions.map(&:slug)
+  end
 end

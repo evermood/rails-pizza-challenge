@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_17_130002) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_17_161535) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_130002) do
     t.decimal "deduction_in_percent", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "exemptions", force: :cascade do |t|
+    t.bigint "order_item_id", null: false
+    t.string "ingredient_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_exemptions_on_ingredient_id"
+    t.index ["order_item_id"], name: "index_exemptions_on_order_item_id"
   end
 
   create_table "ingredients", id: false, force: :cascade do |t|
@@ -94,4 +103,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_130002) do
   end
 
   add_foreign_key "additions", "order_items"
+  add_foreign_key "exemptions", "order_items"
 end

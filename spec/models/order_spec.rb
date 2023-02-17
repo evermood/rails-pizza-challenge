@@ -18,6 +18,7 @@ describe Order, type: :model do
 
   describe 'validations' do
     it { is_expected.to be_valid }
+    it { is_expected.to have_many(:order_items).dependent(:destroy)}
   end   # validations
 
   describe 'before create' do

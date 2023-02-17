@@ -64,9 +64,6 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    list = %i[
-      state price discount_ids promotion_ids
-    ]
-    params.require(:order).permit(*list)
+    params.require(:order).permit(discount_ids: [], promotion_ids: [])
   end
 end

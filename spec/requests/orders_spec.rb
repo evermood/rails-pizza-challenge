@@ -22,8 +22,9 @@ describe "/orders", type: :request do
   # Order. As you add validations to Order, be sure to
   # adjust the attributes here as well. The list could not be empty.
   let(:order) {create :order}
+  let(:promotion) {create :promotion}
 
-  let(:valid_attributes) {attributes_for(:order).slice *%i[state]}
+  let(:valid_attributes) {{promotion_ids: [promotion.id]}}
 
   let(:invalid_attributes) do
     # {state: ''}
@@ -105,7 +106,8 @@ describe "/orders", type: :request do
     end
 
     context "with valid parameters" do
-      let(:attributes) { {state: 'New value'} }
+      let(:new_promotion) {create :promotion}
+      let(:attributes) { {promotion_ids: [new_promotion.slug]} }
 
       it "updates the requested order" do
         # expect_any_instance_of(Order)
@@ -113,7 +115,7 @@ describe "/orders", type: :request do
         patch_update
         order.reload
         # skip("Add assertions for updated state")
-        expect(order.state).to eq 'New value'
+        expect(order.promotions).to eq [new_promotion]
       end
 
       it "redirects to the order" do

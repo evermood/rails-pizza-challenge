@@ -36,6 +36,6 @@ class Order < ApplicationRecord
   private
 
   def set_ready!
-    self.state = "ready"
+    self.state ||= "open"
   end
 end

@@ -23,8 +23,18 @@ describe Order, type: :model do
   end   # validations
 
   describe 'before create' do
-    it 'assigns "ready" to #state' do
-      expect(order.state).to eq "ready"
+    context 'when #state is blank' do
+      it 'assigns "open" to #state' do
+        expect(order.state).to eq "open"
+      end
+    end
+
+    context 'when #state is present' do
+      let(:order) {create :order, state: 'something'}
+
+      it 'does not assign "open" to #state' do
+        expect(order.state).to eq "something"
+      end
     end
   end
 

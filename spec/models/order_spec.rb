@@ -22,6 +22,22 @@ describe Order, type: :model do
     it { is_expected.to have_many(:items).dependent(:destroy)}
   end   # validations
 
+  describe 'class methods' do
+    describe 'scopes' do
+      describe '.open' do
+        it 'returns the records of Order that have the value "open" in #state' do
+          expect(described_class.open).to eq described_class.where(state: 'open')
+        end
+      end
+
+      describe '.ordered' do
+        it 'orders the records of OrderItem by #created_at' do
+          expect(described_class.ordered).to eq described_class.order(:created_at)
+        end
+      end
+    end   # scopes
+  end   # class methods
+
   describe 'before create' do
     context 'when #state is blank' do
       it 'assigns "open" to #state' do

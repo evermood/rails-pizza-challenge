@@ -19,6 +19,9 @@ class Order < ApplicationRecord
   belongs_to :discount, optional: true
   has_many :items, dependent: :destroy, class_name: 'OrderItem'
 
+  scope :open, -> { where(state: 'open') }
+  scope :ordered, -> { order(:created_at) }
+
   def complete!
     update state: 'done'
   end

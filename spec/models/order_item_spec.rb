@@ -28,9 +28,20 @@ describe OrderItem, type: :model do
     describe 'scopes' do
       describe '.ordered' do
         it 'orders the records of OrderItem by #created_at' do
-          expect(OrderItem.ordered).to eq OrderItem.order(:created_at)
+          expect(described_class.ordered).to eq described_class.order(:created_at)
         end
-      end   # .ordered
+      end
+
+      describe 'that_fit(pizza, size)' do
+        subject(:that_fit) {described_class.that_fit pizza, size}
+        let(:pizza) {create :pizza}
+        let(:size) {create :pizza_size}
+
+        it 'returns the instances that have the same pizza and size' do
+          expect(described_class.that_fit pizza, size)
+              .to eq described_class.where pizza: pizza, pizza_size: size
+        end
+      end
     end   # scopes
   end   # class methods
 

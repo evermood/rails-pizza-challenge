@@ -21,6 +21,9 @@ class OrderItem < ApplicationRecord
   has_many :exemptions
 
   scope :ordered, -> { order(:created_at) }
+  scope :that_fit, ->(pizza, size) do
+    where pizza: pizza, pizza_size: size
+  end
 
   def base_price
     pizza.price * pizza_size.coefficient

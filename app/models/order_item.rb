@@ -22,4 +22,12 @@ class OrderItem < ApplicationRecord
 
   scope :ordered, -> { order(:created_at) }
 
+  def base_price
+    pizza.price * pizza_size.coefficient
+  end
+
+  def extra_price
+    additions.map(&:ingredient).map(&:price).sum * pizza_size.coefficient
+  end
+
 end

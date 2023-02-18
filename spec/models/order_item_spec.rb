@@ -34,4 +34,23 @@ describe OrderItem, type: :model do
     end   # scopes
   end   # class methods
 
+  describe '#base_price' do
+    subject(:base_price) {order_item.base_price}
+
+    it 'returns the price of the pizza multiplied by the coefficient of pizza_size' do
+      is_expected.to eq order_item.pizza.price * order_item.pizza_size.coefficient
+    end
+  end
+
+  describe '#extra_price' do
+    subject(:extra_price) {order_item.extra_price}
+
+    it 'returns the sum of the prices of all the ingredients in additions multiplied by the coefficient of pizza_size' do
+      addition1 = create :addition, order_item: order_item
+      addition2 = create :addition, order_item: order_item
+      expect(order_item.additions).to eq [addition1, addition2]
+      is_expected.to eq (addition1.ingredient.price + addition2.ingredient.price) *
+          order_item.pizza_size.coefficient
+    end
+  end
 end

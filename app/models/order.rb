@@ -17,7 +17,7 @@ class Order < ApplicationRecord
   before_create :set_ready! #FIXME: Install AASM
 
   belongs_to :discount, optional: true
-  has_many :order_items, dependent: :destroy
+  has_many :items, dependent: :destroy, class_name: 'OrderItem'
 
   def complete!
     update state: 'done'

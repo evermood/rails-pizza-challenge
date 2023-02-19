@@ -44,3 +44,35 @@ seeds_data['discounts'].each do |name, options|
     .create_with(deduction_in_percent: options['deduction_in_percent'])
     .find_or_create_by name: name
 end
+
+JSON.parse(File.read Rails.root.join(*%w[db orders.json])).each do |order_info|
+  id = order_info['id']
+  state = order_info['state'].downcase
+  created_at = order_info['createdAt']
+  discount = Discount.find_by name: order_info['discountCode']
+  promotions = Array(order_info['promotionCodes']).map do |name|
+    Promotion.find_by name: name
+  end.compact
+  items = order_info['items']
+  order = Order
+      .create_with(state: state, created_at: created_at,
+                   discount: discount, promotions: promotions)
+      .find_or_create_by id: id
+  if order.items.count == items.size
+    order.update state: state, price: nil
+  else
+    items.each do |item_info|
+      pizza = Pizza.find_by! name: item_info['name']
+      pizza_size = PizzaSize.find_by! name_en: item_info['size']
+      item = order.items.create pizza: pizza, pizza_size: pizza_size
+      Array(item_info['add']).each do |ingredient|
+        Addition.create order_item: item,
+            ingredient: Ingredient.find_by!(name_en: ingredient)
+      end
+      Array(item_info['remove']).each do |ingredient|
+        Exemption.create order_item: item,
+            ingredient: Ingredient.find_by!(name_en: ingredient)
+      end
+    end
+  end
+end

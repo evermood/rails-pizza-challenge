@@ -11,6 +11,6 @@
 FactoryBot.define do
   factory :discount do
     sequence(:name) {|n| "DiscountName#{format '%03d', n}" }
-    deduction_in_percent { "9.99" }
+    deduction_in_percent { rand 1.1..5.99 }
   end
 end

@@ -35,4 +35,12 @@ describe Discount, type: :model do
     end   # scopes
   end   # class methods
 
+  describe '#apply_to(price)' do
+    subject(:apply_to) {discount.apply_to(price)}
+    let(:price) {45.68}
+
+    it 'recuces the price by #deduction_in_percent and rounds it to 2 digits' do
+      is_expected.to eq (price * (100 - discount.deduction_in_percent) / 100).round 2
+    end
+  end
 end

@@ -21,4 +21,7 @@ class Discount < ApplicationRecord
 
   scope :ordered, -> { order(:name) }
 
+  def apply_to(price)
+    (price * (100 - deduction_in_percent) / 100).round 2
+  end
 end

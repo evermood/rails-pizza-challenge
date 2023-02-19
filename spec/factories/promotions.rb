@@ -13,10 +13,10 @@
 #
 FactoryBot.define do
   factory :promotion do
-    sequence(:name) {|n| "PromotionName#{format '%03d', n}" }
+    sequence(:name) {|n| "PromotionName#{format '%03d', n}"}
     association :pizza, factory: :pizza
     association :pizza_size, factory: :pizza_size
-    sequence(:from) {|n| "1#{format '%03d', n}" }
-    sequence(:to) {|n| "2#{format '%03d', n}" }
+    from {rand 1..3}
+    to {1}
   end
 end

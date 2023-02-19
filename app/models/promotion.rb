@@ -27,4 +27,12 @@ class Promotion < ApplicationRecord
 
   scope :ordered, -> { order(:name) }
 
+  # Returns the array of itmes that fit the promotion and the price for them
+  def apply_to(items)
+    fits = items.that_fit(pizza, pizza_size).to_a
+    count = fits.size / from * to
+    return [[], 0] if count == 0
+    rest = fits.size % from
+    [fits[rest..-1].map(&:id), fits.first.base_price * count]
+  end
 end

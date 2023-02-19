@@ -16,6 +16,7 @@ describe "/orders", type: :request do
   before :each do
     allow_any_instance_of(OrdersController).to receive(:current_user)
         .and_return(current_user)
+    allow_any_instance_of(Ability).to receive(:can?).and_return true
   end
 
   # This should return the minimal set of attributes required to create a valid
@@ -118,10 +119,10 @@ describe "/orders", type: :request do
         expect(order.promotions).to eq [new_promotion]
       end
 
-      it "redirects to the order" do
+      it "redirects to the orders list" do
         patch_update
         order.reload
-        expect(response).to redirect_to(order_url(id: order.to_param))
+        expect(response).to redirect_to(orders_url)
       end
     end
 

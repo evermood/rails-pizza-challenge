@@ -18,6 +18,9 @@ RSpec.describe OrdersController, type: :routing do
       expect(get: "/orders/1/edit").to route_to("orders#edit", id: "1")
     end
 
+    it "routes to #complete" do
+      expect(patch: "/orders/1/complete").to route_to("orders#complete", id: "1")
+    end
 
     it "routes to #create" do
       expect(post: "/orders").to route_to("orders#create")

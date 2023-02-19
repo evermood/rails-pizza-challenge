@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
+    @orders = @orders.open.ordered
   end
 
   # GET /orders/1
@@ -33,11 +34,17 @@ class OrdersController < ApplicationController
     end
   end
 
+  # PATCH/PUT /orders/1/complete
+  def complete
+    @order.complete!
+    redirect_to orders_url, notice: t('orders.was_completed', id: @order.id)
+  end
+
   # PATCH/PUT /orders/1
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: t('orders.was_updated') }
+        format.html { redirect_to orders_url, notice: t('orders.was_updated') }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }

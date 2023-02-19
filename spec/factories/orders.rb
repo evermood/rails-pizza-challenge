@@ -15,8 +15,16 @@ FactoryBot.define do
     price { rand(8.0..55.99) }
     association :discount, factory: :discount
     promotion_ids do
-      rand(1..2).times.map do
-        create(:promotion).slug
+      [create(:promotion).slug]
+    end
+
+    trait :with_items do
+      transient do
+        items_count { 2 }
+      end
+
+      after(:create) do |order, evaluator|
+        create_list :order_item, evaluator.items_count, order: order
       end
     end
   end

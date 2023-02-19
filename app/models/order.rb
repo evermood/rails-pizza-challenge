@@ -23,7 +23,32 @@ class Order < ApplicationRecord
   scope :ordered, -> { order(:created_at) }
 
   def complete!
-    update state: 'done'
+    update state: 'done', price: current_price
+  end
+
+  def current_price
+    price = base_price + extra_price
+    discount.blank? ? price : discount.apply_to(price)
+  end
+
+  def base_price
+    price = 0.to_d
+    fits = promotions.each_with_object([]) do |promotion, ids|
+      pr_ids, pr_price = promotion.apply_to items
+        logger.debug {%Q<Order@#{__LINE__}#base_price: #{promotion.inspect} #{pr_ids.inspect} #{pr_price}>}
+      ids << pr_ids
+      price += pr_price
+    end.flatten
+      logger.debug {%Q<Order@#{__LINE__}#base_price: #{fits.inspect} #{price} #{items}>}
+    price + items.where.not(id: fits).map(&:base_price).sum
+  end
+
+  def extra_price
+    items.map(&:extra_price).sum
+  end
+
+  def total_price
+    price || current_price
   end
 
   def promotions

@@ -1,0 +1,42 @@
+.order
+  %table
+    %tbody
+      %tr{order_id: order.id}
+        %td.left
+          %ul
+            %li.id
+              = "#{Order.human_attribute_name :id}:"
+              = order.id
+            %li.created_at
+              = "#{Order.human_attribute_name :created_at}:"
+              = order.created_at.to_fs(:long)
+            %li.promotions
+              = "#{Order.human_attribute_name :promotions}:"
+              - if order.promotions.present?
+                = order.promotions.map(&:name).join(', ')
+              - else
+                = '-'
+            %li.discount
+              = "#{Order.human_attribute_name :discount}:"
+              = order.discount&.name.presence || '-'
+            %li.price
+              = t '.total_price', price: number_to_rounded(order.total_price, precision: 2)
+            %li.complete
+              = button_to t('.complete'), complete_order_path(id: order.id), method: :patch
+        %td.right
+          %ul
+            %li.title
+              = "#{Order.human_attribute_name :itmes}:"
+            - order.items.each do |item|
+              %li.order_item
+                = "#{item.pizza.name} (#{item.pizza_size.name})"
+                - if item.additions.present?
+                  %ul
+                    %li.ingredient
+                      = t '.add'
+                      = item.additions.map{|el| el.ingredient.name}.join(', ')
+                - if item.exemptions.present?
+                  %ul
+                    %li.ingredient
+                      = t '.remove'
+                      = item.exemptions.map{|el| el.ingredient.name}.join(', ')

@@ -6,12 +6,4 @@
   - if can? :edit, @order
     = link_to t('edit'), edit_order_path(@order), class: 'edit'
 
-%dl
-  %dt= Order.human_attribute_name :state
-  %dd.state= @order.state
-  %dt= Order.human_attribute_name :price
-  %dd.price= @order.price
-  %dt= Order.human_attribute_name :discount_id
-  %dd.discount_id= @order.discount_id
-  %dt= Order.human_attribute_name :promotion_ids
-  %dd.promotion_ids= @order.promotion_ids
+= render 'show', order: @order

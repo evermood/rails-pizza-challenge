@@ -6,10 +6,11 @@ en:
     attributes:
       order: 
         created_at: "Created"
-        state: "State"
-        price: "Price"
         discount: "Discount"
+        id: ID
+        price: "Price"
         promotions: "Promotions"
+        state: "State"
   helpers:
     submit:
       order:
@@ -21,16 +22,19 @@ en:
     form:
       order: "Order"
     index:
-      complete: Complete
       confirm: "Are you sure you want to delete the order?"
       empty: "No orders found"
       new_order: "Add a new order"
-      title: "Listing of orders"
+      title: "Orders"
     new:
       title: "Adding a new order"
     show:
+      add: "Add:"
+      complete: "Complete"
+      remove: "Remove:"
       title: "Order of %{created_at}"
-    was_completed: "Order was successfully completed"
+      total_price: "Total Price %{price}€"
+    was_completed: "Order %{id} was successfully completed"
     was_created: "Order was successfully added"
     was_deleted: "Order was successfully deleted"
     was_updated: "Order was successfully updated"

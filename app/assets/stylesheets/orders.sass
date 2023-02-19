@@ -1,0 +1,25 @@
+@import colors
+
+body.orders
+  .order
+    border-top: 1px solid black
+  table
+    tr
+      border: none
+      td
+        border: none
+        vertical-align: top
+        &.left
+          li
+            list-style-type: none
+        &.right
+          padding-left: 12px
+    ul
+      padding-inline-start: 12px
+      li
+        margin-top: 0.4em
+        &.price,&.complete
+          margin-top: 30px
+        &.title
+          list-style-type: none
+          margin-left: -12px

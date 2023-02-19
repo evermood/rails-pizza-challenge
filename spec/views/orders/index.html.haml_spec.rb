@@ -10,13 +10,9 @@ describe "orders/index.html.haml", type: :view do
     assign :orders, Order.all
   end
 
-  it "renders a list of orders" do
+  it "renders #id in td.left>ul>li.id" do
     render
 
-    assert_select 'tr>td.state', text: order.state.to_s, count: 1
-    assert_select 'tr>td.price', text: order.price.to_s, count: 1
-    #assert_select 'tr>td.discount_ids', text: order.discount_ids.to_s, count: 1
-    #assert_select 'tr>td.promotion_ids', text: order.promotion_ids.to_s, count: 1
+    assert_select 'td.left>ul>li.id', text: Regexp.new(order.id.to_s)
   end
-
 end

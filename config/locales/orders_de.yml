@@ -5,6 +5,7 @@ de:
       order: 
         created_at: "Erstellt"
         discount: Rabatt
+        id: ID
         price: Preis
         promotions: Aktionen
         state: Status
@@ -21,16 +22,19 @@ de:
     form: 
       order: Bestellung
     index: 
-      complete: Abschließen
       confirm: "Sind Sie sicher, dass Sie die Bestellung löschen möchten?"
       empty: "Keine Bestellungen gefunden"
       new_order: "Hinzufügen eine neue Bestellung"
-      title: "Auflistung der Bestellungen"
+      title: "Bestellungen"
     new:
       title: "Hinzufügen eine neue Bestellung"
-    show: 
+    show:
+      add: "Hinzufügen:"
+      complete: Abschließen
+      remove: "Abnehmen:"
       title: "Bestellung von %{created_at}"
-    was_completed: "Bestellung wurde erfolgreich abgeschlossen"
+      total_price: "Gesamtpreis %{price}€"
+    was_completed: "Bestellung %{id} wurde erfolgreich abgeschlossen"
     was_created: "Bestellung wurde hinzugefügt"
     was_deleted: "Bestellung wurde erfolgreich gelöscht"
     was_updated: "Bestellung wurde erfolgreich aktualisiert"

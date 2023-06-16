@@ -29,6 +29,10 @@
                 <%- discount_code = order.discount_code.present? ? order.discount_code : '-' %>
                 <%= discount_code %>
               </div>
+              <div>
+                <label>Total Price:</label>
+                <%= order.total_price %>
+              </div>
             </div>
 
             <div class='col-md'>

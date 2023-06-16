@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:update]
 
   def index
-    @orders = Order.where(state: :open).order(created_at: :desc)
+    @orders = Order.where(state: :open).order(created_at: :asc)
   end
 
   def update

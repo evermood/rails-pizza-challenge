@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Create Orders table
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders, id: :uuid do |t|

@@ -19,7 +19,7 @@ class Order < ApplicationRecord
 
     total -= applied_promotions_price
 
-    total -= (total * applied_discounts_percentage)
+    total -= (total * applied_discounts_percentage) if promotion_codes.present?
 
     total.round(2)
   end
@@ -36,8 +36,6 @@ class Order < ApplicationRecord
   end
 
   def applied_promotions_price
-    return 0 unless promotion_codes.present?
-
     promotion_discount_price = 0
 
     promotion_codes.each do |code|
@@ -49,9 +47,9 @@ class Order < ApplicationRecord
 
       times_applied = count_on_promotion / promotion['from']
       items_discounted = promotion['from'] - promotion['to']
-      base_price = CONFIG['pizzas'][promotion['target']] * CONFIG['size_multipliers'][promotion['target_size']]
+      unit_price = CONFIG['pizzas'][promotion['target']] * CONFIG['size_multipliers'][promotion['target_size']]
 
-      promotion_discount_price += base_price * times_applied * items_discounted
+      promotion_discount_price += unit_price * times_applied * items_discounted
     end
 
     promotion_discount_price
@@ -64,7 +62,7 @@ class Order < ApplicationRecord
   end
 
   def applied_discounts_percentage
-    return 0 unless discount_code.present?
+    return 0 if discount_code.blank?
 
     # As the orders.json file sets the discount_code as a string instead of array,
     # I am applying just one discount code. This would be my code in case of

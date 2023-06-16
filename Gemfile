@@ -36,6 +36,9 @@ gem 'jbuilder', '~> 2.5'
 # Adds bootstrap
 gem 'bootstrap', '~> 4.0.0'
 
+# Adds rubocop
+gem 'rubocop-rails', require: false
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

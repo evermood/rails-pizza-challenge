@@ -114,6 +114,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.13.10-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.13.10-arm64-darwin)
       racc (~> 1.4)
     pg (1.5.3)
@@ -204,6 +206,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-20
 
 DEPENDENCIES
@@ -230,4 +233,4 @@ RUBY VERSION
    ruby 2.6.9p207
 
 BUNDLED WITH
-   2.3.8
+   2.4.14

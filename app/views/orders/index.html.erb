@@ -29,9 +29,17 @@
                 <%- discount_code = order.discount_code.present? ? order.discount_code : '-' %>
                 <%= discount_code %>
               </div>
-              <div>
+              <div class='my-4'>
                 <label>Total Price:</label>
                 <%= number_to_currency(order.total_price, unit: "€", format: "%n%u") %>
+              </div>
+              <div>
+                <%=
+                  button_to 'Complete',
+                    order_path(order.id),
+                    method: :patch,
+                    params: { order: { state: :completed } }
+                %>
               </div>
             </div>
 

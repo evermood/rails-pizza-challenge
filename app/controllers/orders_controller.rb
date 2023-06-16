@@ -9,14 +9,18 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.update(state: :open)
+    @order.update(update_order_params)
 
-    redirect_to orders_index_path
+    redirect_to orders_path
   end
 
   private
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def update_order_params
+    params.require(:order).permit(:state)
   end
 end

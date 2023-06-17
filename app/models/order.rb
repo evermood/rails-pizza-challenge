@@ -28,8 +28,10 @@ class Order < ApplicationRecord
     base_price = CONFIG['pizzas'][item['name']]
     size_multiplier = CONFIG['size_multipliers'][item['size']]
 
-    item['add'].each do |added|
-      base_price += CONFIG['ingredients'][added]
+    if item['add'].present?
+      item['add'].each do |added|
+        base_price += CONFIG['ingredients'][added]
+      end
     end
 
     base_price * size_multiplier
@@ -43,7 +45,7 @@ class Order < ApplicationRecord
 
       count_on_promotion = items_on_promotion(promotion['target'], promotion['target_size']).count
 
-      next unless count_on_promotion > promotion['from']
+      next unless count_on_promotion >= promotion['from']
 
       times_applied = count_on_promotion / promotion['from']
       items_discounted = promotion['from'] - promotion['to']

@@ -1,0 +1,73 @@
+<div class='container'>
+  <div class='my-4'>
+    <h1>
+      Orders
+    </h1>
+  </div>
+
+  <div>
+    <%- @orders.each do |order| %>
+      <div class='my-4 border-top border-dark'>
+        <div class='container my-2 px-2'>
+          <div class='row'>
+            <div class='col-md'>
+              <div>
+                <label>ID:</label>
+                <%= order.id %>
+              </div>
+              <div>
+                <label>Created:</label>
+                <%= order.created_at.strftime('%B %d, %Y %H:%m') %>
+              </div>
+              <div>
+                <label>Promotion codes:</label>
+                <%- promotion_codes = order.promotion_codes.present? ? order.promotion_codes : '-' %>
+                <%= promotion_codes %>
+              </div>
+              <div>
+                <label>Discount codes:</label>
+                <%- discount_code = order.discount_code.present? ? order.discount_code : '-' %>
+                <%= discount_code %>
+              </div>
+              <div class='my-4'>
+                <label>Total Price:</label>
+                <%= number_to_currency(order.total_price, unit: "€", format: "%n%u") %>
+              </div>
+              <div>
+                <%=
+                  button_to 'Complete',
+                    order_path(order.id),
+                    method: :patch,
+                    params: { order: { state: :completed } }
+                %>
+              </div>
+            </div>
+
+            <div class='col-md'>
+              <label>Items:</label>
+              <ul>
+                <%- order.items.each do |item| %>
+                  <li>
+                    <p> <%= item['name'] %> (<%= item['size'] %>) </p>
+                    <ul>
+                      <%- if item['add'].present? %>
+                        <li>
+                          <p> Add: <%= item['add'].join(', ') %> </p>
+                        </li>
+                      <%- end %>
+                      <%- if item['remove'].present? %>
+                        <li>
+                          <p> Remove: <%= item['remove'].join(', ') %> </p>
+                        </li>
+                      <%- end %>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

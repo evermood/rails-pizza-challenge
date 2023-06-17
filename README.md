@@ -1,44 +1,57 @@
-# Evermood Rails Coding Challenge
 
-We are excited that you are interested in performing our coding challenge. The purpose of this assignment is to see how you approach problems and evaluate the quality of your code.
+# README
 
+<h3 align="left">Languages and Tools:</h3>
+<p align="left"> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://rubyonrails.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rails/rails-original-wordmark.svg" alt="rails" width="40" height="40"/> </a> <a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-original.svg" alt="ruby" width="40" height="40"/> </a> </p>
 
-## The task and requirements
+## Description
 
-This challenge is about implementing a simple pizza order overview for a restaurant. All orders need to be listed, with the items they contain, their details and the total price. In addition, it is possible to mark orders as completed.
+This is a application for the Evermood's code challenge a simple order view, which loads the orders from the JSON file into the database and applies configs from the config.yml file. Both files were provided by Evermood's [code challenge](https://github.com/evermood/rails-pizza-challenge). The requirements for this application is also found on Evermood's repository.
+It is developed with Ruby on Rails, PostgreSQL and running on Docker.
 
-For this purpose, a small full-stack application is to be created with Ruby on Rails, which provides the backend and a web UI to manage the orders. The UI should look like this:
+## **Setting up**
 
-![Orders listing](images/orders_wireframe.png)
+**Requirements**:
 
-In [`data/orders.json`](data/orders.json) you will find a sample listing that you can use as a basis for your listing. Use it to fill the corresponding fields in the UI.
+- Docker
+- Docker-compose
 
-Furthermore, to mark orders as completed, you can click on the respective button. It should send a `PATCH` request to a `/orders/:id` backend endpoint to update the order. Completed orders should then simply no longer be displayed in the UI.
+**Run**:
 
-At last, the total price for a pizza order is to be calculated and displayed. For a pizza order several pizzas can be ordered, per pizza the desired size and also special requests (extra ingredients and omit ingredients) can be specified. In addition, there is a possibility to reduce the price of the order by using various discount codes.
+- First, change the .env.example name to .env
+- Then:
+```bash
+    docker-compose up
+    docker-compose run web rake db:create
+    docker-compose run web rake db:migrate
+    docker-compose run web rake db:seed
+```
 
-- The price of a pizza depends on the size. Per size there is a "multiplier" that is multiplied by the base price of the pizza.
-- Extra ingredients are also provided with this multiplier.
-- Ingredients that are omitted during preparation do not change the price of the pizza.
-- Promotion codes allow to get pizzas for free; e.g., two small salami pizzas for the price of one. Extra ingredients will still be charged though. Multiple promotion codes can be specified per order. A promotion code can also be applied more than once to the same order (a 2-for-1 code automatically reduces 4 pizzas to 2 for one order).
-- A discount code reduces the total invoice amount by a percentage.
+The application will be available on localhost:3000
 
-In [`data/config.yml`](data/config.yml) you can find the list of selectable pizzas, the multipliers and ingredients, as well as the promotion and discount codes.
+## Running tests (rspec)
+```bash
+    docker-compose run web rspec
+```
 
+## Documentation:
+- *GET /orders*  
+    Lists the existing open orders
 
-## How to proceed and submit the solution
-- Arrange your time as you like. We are interested in you finding a solution you are happy with, not speed. But please do not spend more than 4 hours. 
-- Create a private repository and checkout a feature branch.
-- Push your solution and work with git like you would on a real project.
-- Open a pull request when you are ready.
-- Add us to the repository and mention us in the pull request, so we can take a look at your solution.
-- Feel free to contact us at any time by mail with questions or difficulties.
+- *PATCH /order/:id*  
+    Set the order as completed and redirects to the /orders
 
+## Gems used
+- Rspec
+- FactoryBot
+- Boostrap
+- Rubocop
 
-## What we are looking for
-- Does your solution work technically correct and is executable? Did you follow the instructions?
-- Is your code well written and easy to read and understand? Did you use a linter?
-- Are you following the usual conventions for Ruby on Rails development?
-- How good are you at writing tests? And how easy are they to read and understand?
-- How well is your solution documented? Are all steps for installation and execution described?
-- How proficient are you in using git?
+## Decision making
+- Created orders from JSON file instead of creating all tables
+I've decided to use the JSON file instead of creating all the tables and models, as it was described on the challenge to use the JSON file as basis for listing. Also, it was a decision to avoid taking a longer time.
+
+- Able to apply only one discount code
+As on the JSON file, the discount code is a string instead of Array, I took the initiative to consider only one discount code per order.
+
+- Used rubocop as linter

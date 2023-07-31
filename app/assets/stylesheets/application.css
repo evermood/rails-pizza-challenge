@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.order {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-details, .order-items {
+  width: 50%;
+  padding: 10px;
+}

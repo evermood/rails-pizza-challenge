@@ -14,7 +14,9 @@
           <p>Promotion Codes: <%= order['promotionCodes'].empty? ? '-' : order['promotionCodes'].join(", ") %></p>
           <p>Discount Codes: <%= order['discountCode'].nil? ? '-' : order['discountCode'] %></p>
           <br>
-          <p>Total price: <%= order['totalPrice'] %></p>
+          <% if order['totalPrice']%>
+            <p>Total price: <%= order['totalPrice']%> <%= order['totalPrice'].currency.symbol  %></p>
+          <% end %>
           <button type="button" onclick="completeOrder('<%= order['id'] %>')">Complete</button>
         </div>
         <div class="order-items">

@@ -26,6 +26,35 @@ At last, the total price for a pizza order is to be calculated and displayed. Fo
 In [`data/config.yml`](data/config.yml) you can find the list of selectable pizzas, the multipliers and ingredients, as well as the promotion and discount codes.
 
 
+## Installation
+
+  1. Clone the repository to your local machine:
+  ```git clone <repository_url>```
+
+  2. Install the necessary dependencies using Bundler:
+
+  ```bundle install```
+
+  3. Precompile JS
+
+  ```bundle exec rake assets:precompile```
+
+## Usage
+
+  To run the app, follow these steps:
+
+  1. Start the Rails server:
+
+  ```rails server```
+
+  2. Access the application in your web browser at `http://localhost:3000`.
+
+  3. The homepage will display the list of pizza orders. You can view order information and Complete an order.
+
+  4. Run tests:
+
+  ```rspec```
+
 ## How to proceed and submit the solution
 - Arrange your time as you like. We are interested in you finding a solution you are happy with, not speed. But please do not spend more than 4 hours. 
 - Create a private repository and checkout a feature branch.

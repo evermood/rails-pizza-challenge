@@ -5,7 +5,7 @@ Here is the solution to the problem described in Readme.
 A Rails app has two main features:
 
 - displaying a list of orders. Orders are loaded from the `data/orders.json` file.
-- the ability to complete an order. Click the 'Complete' button
+- the ability to complete an order. Click the 'Complete' button for that.
 
 Promotions and discounts are **not currently implemented** as I limited time to recommended 4h.
 
@@ -74,6 +74,7 @@ Run tests:
 - implement promotions and discounts
 - consider persisting the prices in the file/DB
 - better error handling on all the layers
+- figure out credentials.yml
 - improve the configuration of data files for different environments + test data
 - specs improvements: shared examples, remove magic numbers, request tests
 - various TODOs in the code
